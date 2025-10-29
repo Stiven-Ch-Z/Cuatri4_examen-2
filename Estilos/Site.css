@@ -1,0 +1,42 @@
+﻿.container {
+    max-width: 980px; /* Ancho máximo para que no ocupe toda la pantalla */
+    margin: 20px auto; /* Centrado horizontal con margen superior */
+    padding: 16px; /* Espaciado interno */
+    border: 1px solid #ddd; /* Borde suave */
+    border-radius: 10px; /* Bordes redondeados */
+    background: #fff; /* Fondo blanco */
+}
+
+/* Barra superior de navegación */
+.topbar {
+    background: #2d3748; /* Color oscuro */
+    color: #fff; /* Texto blanco */
+    padding: 10px 16px; /* Espaciado */
+}
+
+    .topbar a {
+        color: #fff; /* Links blancos */
+        margin-right: 12px; /* Separación entre enlaces */
+        text-decoration: none; /* Sin subrayado */
+    }
+
+/* Estilos simples para inputs y botón */
+input[type=text] {
+    width: 100%; /* Ocupar ancho */
+    padding: 8px; /* Espaciado */
+    margin: 6px 0; /* Separación vertical */
+    box-sizing: border-box; /* Incluye padding/borde en el cálculo de ancho */
+}
+
+button, .btn {
+    padding: 8px 12px; /* Tamaño del botón */
+    border: 1px solid #2d3748; /* Borde */
+    background: #2d3748; /* Fondo */
+    color: white; /* Texto */
+    border-radius: 6px; /* Bordes redondeados */
+    cursor: pointer; /* Manito al pasar */
+}
+
+    button:hover, .btn:hover {
+        opacity: .9; /* Ligero efecto al pasar */
+    }
