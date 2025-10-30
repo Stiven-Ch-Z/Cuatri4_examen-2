@@ -14,7 +14,7 @@ namespace BibliotecaMVC.Views.Libros
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack) return;
-            // placa viene de {placa} en la ruta
+            // codigo viene de {codigo} en la ruta
             var codigo = (string)Page.RouteData.Values["codigo"];
             var libro = _controller.ObtenerPorCodigo(codigo);
             if (libro == null)

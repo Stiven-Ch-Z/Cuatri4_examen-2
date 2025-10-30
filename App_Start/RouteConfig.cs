@@ -24,7 +24,7 @@ namespace BibliotecaMVC
                 );
             routes.MapPageRoute(//ruta que apunto la pagina web
                     routeName: "VerDetallesLibros",//nombre interni
-                    routeUrl: "libros/detalles{codigo}",//url
+                    routeUrl: "libros/detalles/{codigo}",//url
                     physicalFile: "~/Views/Libros/Detalles.aspx"//pagina fisica
                 );
         }

@@ -14,44 +14,50 @@ namespace BibliotecaMVC.Controllers
         private static readonly List<Libro> _libros = new List<Libro>();
 
         [HttpGet]
-        public string Registrar()
+        public string Registrar() // [HttpGet]: esta acción se ejecuta al cargar la página de registro.
         {
-            return "Mostrar formulario de registro de libro";
+            return "Mostrar formulario de registro de libro"; 
         }
         [HttpPost]
         public string Registrar(Libro nuevo)
         {
-            var errores = ValidarModelo(nuevo);
+            var errores = ValidarModelo(nuevo); //las validaciones del modelo
+
             if (errores.Any())
             {
-                return "Errores de validación: " + string.Join(" | ", errores);
+                return "Errores de validación: " + string.Join(" | ", errores); //retorna los errores encontrados
             }
-            bool yaExite = _libros.Any(l => l.Codigo.Equals(nuevo.Codigo, StringComparison.OrdinalIgnoreCase));
-            if (yaExite)
+
+            bool yaExiste = _libros.Any(l => l.Codigo.Equals(nuevo.Codigo, StringComparison.OrdinalIgnoreCase));
+            if (yaExiste)
             {
-                return "El libro con ese código ya existe.";
+                return "Si el codigo del libro se repitio no se agrego, Si es diferente se agrego exitosamente";//retorna error si el libro ya existe
             }
-            _libros.Add(nuevo);
-            return "Libro registrado exitosamente.";
+            else
+            {
+                _libros.Add(nuevo);
+                return "Libro registrado exitosamente.";//retorna mensaje de exito
+            }
         }
         public List<Libro> Listar(string codigo = null)
         {
-            if (string.IsNullOrWhiteSpace(codigo))
+            if (string.IsNullOrWhiteSpace(codigo))//si no hay filtro, devuelve todos
                 return _libros.ToList();
 
-            return _libros
+            return _libros//si hay filtro, devuelve los que coinciden
                 .Where(l => l.Codigo.IndexOf(codigo, StringComparison.OrdinalIgnoreCase) >= 0)
                 .ToList();
         }
-        [HttpGet]
         public string Eliminar(string codigo)
         {
-            var libro = _libros.Find(l => l.Codigo == codigo);
+            var libro = _libros.FirstOrDefault(l =>
+                l.Codigo.Equals(codigo, StringComparison.OrdinalIgnoreCase));//busca el libro por codigo
+
             if (libro == null)
-                return "Libro no encontrado.";
+                return "Error: Libro no encontrado.";//mensaje de error si no lo encuentra
 
             _libros.Remove(libro);
-            return $"Libro '{libro.Titulo}' eliminado correctamente";
+            return $"El libro '{libro.Titulo}' fue eliminado correctamente.";//mensaje de exito
         }
         [ActionName("VerTodos")]
         public List<Libro> ListarConAlias()
@@ -66,18 +72,18 @@ namespace BibliotecaMVC.Controllers
         }
 
         [NonAction]
-        private List<string> ValidarModelo(Libro modelo)
+        private List<string> ValidarModelo(Libro modelo) //valida el modelo usando Data Annotations
         {
             var contexto = new ValidationContext(modelo, serviceProvider: null, items: null);
-            var resultados = new List<ValidationResult>();
+            var resultados = new List<ValidationResult>(); // almacena los resultados de la validación
             bool valido = Validator.TryValidateObject(modelo, contexto, resultados, true);
-            return valido ? new List<string>() : resultados.Select(r => r.ErrorMessage).ToList();
+            return valido ? new List<string>() : resultados.Select(r => r.ErrorMessage).ToList();//retorna los mensajes de error si no es valido
         }
         public Libro ObtenerPorCodigo(string codigo)
         {
-            if (string.IsNullOrWhiteSpace(codigo)) return null;
-            return _libros.FirstOrDefault(a =>
-            a.Codigo.Equals(codigo, StringComparison.OrdinalIgnoreCase));
+            if (string.IsNullOrWhiteSpace(codigo)) return null;//si el codigo es nulo o vacio retorna null
+            return _libros.FirstOrDefault(a =>a.Codigo.Equals(codigo, StringComparison.OrdinalIgnoreCase));//busca el libro por codigo y lo retorna
         }
+        
     }
 }
