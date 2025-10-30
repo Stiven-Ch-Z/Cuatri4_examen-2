@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>Taller Mecanico</title>
+    <title>Biblioteca MVC</title>
     <link href="~/Estilos/site.css" rel="stylesheet" />
     <script src="<%=ResolveUrl("~/JS/app.js") %>"></script>
     <!--JS Basico para la clase-->

@@ -15,9 +15,9 @@ namespace BibliotecaMVC.Views.Libros
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) // Solo la primera vez 
+            if (!IsPostBack) // al cargar la pagina por primera vez
             {
-                CargarLibros(); // Cargamos todos los autos 
+                CargarLibros(); // Cargamos todos los libros cuando se carga la pagina
             }
         }
 
@@ -30,13 +30,24 @@ namespace BibliotecaMVC.Views.Libros
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            CargarLibros(txtFiltro.Text.Trim()); // Cargar filtrando por placa
+            CargarLibros(txtFiltro.Text.Trim()); // Cargar filtrando por codigo
         }
 
         protected void btnRefrescar_Click(object sender, EventArgs e)
         {
             txtFiltro.Text = string.Empty; // Limpiamos filtro 
-            CargarLibros(); // Cargamos todos 
+            CargarLibros(); // y se recargan los datos
+        }
+        protected void gvLibros_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "EliminarLibro")
+            {
+                string codigo = e.CommandArgument.ToString(); //es el código del libro a eliminar
+                string mensaje = _controller.Eliminar(codigo);// llamamos al controlador para eliminar
+
+                lblMensaje.Text = mensaje; //nos dara el mensaje de exito o error
+                CargarLibros(); // se refresca la tabla después de eliminar
+            }
         }
     }
 }

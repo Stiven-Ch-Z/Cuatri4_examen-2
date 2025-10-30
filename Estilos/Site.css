@@ -4,12 +4,30 @@
     padding: 16px; /* Espaciado interno */
     border: 1px solid #ddd; /* Borde suave */
     border-radius: 10px; /* Bordes redondeados */
-    background: #fff; /* Fondo blanco */
+    font-weight:500;
+    background: url('../Estilos/imagenes/fondopapel.jpg') center center fixed; /* Fondo blanco */
+}
+h1 {
+    color: #fff;
+    font-size: 35px;
+    margin-right: 20px
 }
 
+h2 {
+    text-align: center; /* Centrar títulos */
+    color: #050505; /* Color del texto */
+}
+body {
+    background: url('../Estilos/imagenes/fondobiblio.jpg') no-repeat center center fixed;
+    background-size: cover; /* Ajusta la imagen a toda la pantalla */
+    background-attachment: fixed; /* Evita que se mueva al hacer scroll */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 /* Barra superior de navegación */
 .topbar {
-    background: #2d3748; /* Color oscuro */
+    background: #4A1010; /* Color oscuro */
     color: #fff; /* Texto blanco */
     padding: 10px 16px; /* Espaciado */
 }
@@ -20,6 +38,16 @@
         text-decoration: none; /* Sin subrayado */
     }
 
+.detalle {
+    text-align: center;
+    max-width: 500px; /* Ancho máximo para que no ocupe toda la pantalla */
+    margin: 20px auto; /* Centrado horizontal con margen superior */
+    padding: 16px; /* Espaciado interno */
+    border: 1px solid #ddd; /* Borde suave */
+    border-radius: 10px; /* Bordes redondeados */
+    background: #947F80;
+    font-size: 18px;
+}
 /* Estilos simples para inputs y botón */
 input[type=text] {
     width: 100%; /* Ocupar ancho */
@@ -31,12 +59,92 @@ input[type=text] {
 button, .btn {
     padding: 8px 12px; /* Tamaño del botón */
     border: 1px solid #2d3748; /* Borde */
-    background: #2d3748; /* Fondo */
+    background: #4A1010; /* Fondo */
     color: white; /* Texto */
     border-radius: 6px; /* Bordes redondeados */
     cursor: pointer; /* Manito al pasar */
+}
+.lbl {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    background: #968F8F;
 }
 
     button:hover, .btn:hover {
         opacity: .9; /* Ligero efecto al pasar */
     }
+
+.gv {
+    width: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+    /* --- Cabecera --- */
+    .gv th {
+        background-color: #4A1010;
+        color: white;
+        text-align: left;
+        padding: 12px;
+        letter-spacing: 0.5px;
+    }
+
+    /* --- Filas normales --- */
+    .gv td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* --- Filas alternas --- */
+    .gv tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    /* --- Hover --- */
+    .gv tr:hover {
+        background-color: #eaf3ff;
+        transition: 0.2s ease;
+    }
+
+    /* --- Botones dentro del grid --- */
+    .gv button,
+    .gv input[type="submit"],
+    .gv input[type="button"] {
+        background-color: #D40219;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 6px 12px;
+        cursor: pointer;
+        font-weight: 500;
+    }
+
+        .gv button:hover,
+        .gv input[type="submit"]:hover {
+            background-color: #005ea8;
+        }
+
+    /* --- Links tipo “Ver” --- */
+    .gv a {
+        color: #0078d7;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+        .gv a:hover {
+            text-decoration: underline;
+        }
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    background: #380505;
+    color: white;
+    padding: 10px;
+    font-size: 12px
+}
